@@ -10,7 +10,7 @@ class Node {
     }
 }
 
-class BinaryTree {
+export class BinaryTree {
     idx = -1;
 
     buildBinaryTree(nodes) {
@@ -46,30 +46,37 @@ class BinaryTree {
         console.log(root.data);
     }
 
-    levelOrder(root){
+    levelOrder(root) {
         let queue = []
         queue.push(root)
-        while(queue.length != 0){
+        while (queue.length != 0) {
             let node = queue.shift()
             console.log(node.data);
-            if(node.left != null){
+            if (node.left != null) {
                 queue.push(node.left)
             }
-            if(node.right != null){
+            if (node.right != null) {
                 queue.push(node.right)
             }
         }
     }
+
+    height(root) {
+        if (root == null) return 0;
+        const leftHeight = this.height(root.left);
+        const rightHeight = this.height(root.right);
+        return Math.max(leftHeight, rightHeight) + 1;
+    }
 }
 
-const nodes = [1, 2, 4, -1, -1, 5, -1, -1, 3, 6, -1, -1, 7, -1, -1]
-const binaryTree = new BinaryTree()
-const root = binaryTree.buildBinaryTree(nodes)
-console.log("=================== preoder ====================");
-binaryTree.preOrder(root)
-console.log("=================== inorder ====================");
-binaryTree.inOrder(root)
-console.log("=================== postorder ====================");
-binaryTree.postOrder(root)
-console.log("=================== level order ====================");
-binaryTree.levelOrder(root)
+// const nodes = [1, 2, 4, -1, -1, 5, -1, -1, 3, 6, -1, -1, 7, -1, -1]
+// const binaryTree = new BinaryTree()
+// const root = binaryTree.buildBinaryTree(nodes)
+// console.log("=================== preoder ====================");
+// binaryTree.preOrder(root)
+// console.log("=================== inorder ====================");
+// binaryTree.inOrder(root)
+// console.log("=================== postorder ====================");
+// binaryTree.postOrder(root)
+// console.log("=================== level order ====================");
+// binaryTree.levelOrder(root)
